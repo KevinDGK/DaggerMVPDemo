@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'     // 添加apt插件
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.dgk.mvpdemo"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.google.dagger:dagger:2.4'
+    // dagger
+    apt 'com.google.dagger:dagger-compiler:2.4'
+    // dagger编译器
+    //provided 'javax.annotation:jsr250-api:1.0'        // Java标注
+    provided 'org.glassfish:javax.annotation:10.0-b28'  // Java标注，作用同上
+}

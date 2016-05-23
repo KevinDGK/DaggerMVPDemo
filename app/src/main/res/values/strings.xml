@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MVPDemo</string>
+    <string name="button">点击加载数据</string>
+</resources>
