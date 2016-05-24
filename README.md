@@ -23,7 +23,7 @@
 ##基本结构视图##
 Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，Module，Component,Container。
 
-**依赖(组件)		       注入器(构成)		     容器**
+**依赖(组件)		       注入器(构成)		     容器**  
 ![](http://i.imgur.com/gVqm9MH.png)  
 
 - Module：依赖的提供者，所有需要被注入的元素的实例对象都是Module提供的，即所有注入的对象都是在这里new的；
@@ -54,7 +54,7 @@ Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，M
  ![](http://i.imgur.com/Wb19hIy.png)  
 ##本例中mvp的简单流程-点击按钮加载数据##  
  ![](http://i.imgur.com/Q36OFjs.png)  
-##包结构##
+##包结构##  
 ![](http://i.imgur.com/cUWvtHY.png)  
 ##流程##
 1.	首先走一遍MVP流程：从第1~6步
