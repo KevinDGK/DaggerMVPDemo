@@ -2,7 +2,7 @@
 	内容主题：Dagger+MVP的基本使用
 	内容介绍：本Demo主要讲解了Dagger注入框架的基本知识，以及在MVP框架中的使用。
 #Dagger初步认识#
-	Dagger是一个Java和Android都可以使用的完全静态的、编译时运行的依赖注入框架。早期由Square开发，现在是由google维护的一个新的版本。
+	Dagger是一个Java和Android都可以使用的完全静态的、编译时运行的依赖注入框架。早期由  Square开发，现在是由google维护的一个新的版本。
 	Dagger2是一种依赖注入的框架，能够在编译时自动生成出一些代码，这些代码可以帮助对应的实例初始化，例如：一个容器类中装的是苹果，正常的写法是：
 
     	Public class Container{
@@ -18,7 +18,8 @@
     	...
     	}  
 	
-	这样，Container的成员变量就自动初始化成Apple实例了，Container不用关心具体用哪个Fruit的实现，也不用关心到底用什么颜色多大的苹果。假如某一天要把苹果替换成香蕉，Container的代码是完全不需要改动的。从某种意义上说，Dagger2就是一个帮你写工厂代码的工具。当然Dagger2的功能比工厂模式更加强大。
+	这样，Container的成员变量就自动初始化成Apple实例了，Container不用关心具体用哪个Fruit的实现，也不用关心到底用什么颜色多大的苹果。
+	假如某一天要把苹果替换成香蕉，Container的代码是完全不需要改动的。从某种意义上说，Dagger2就是一个帮你写工厂代码的工具。当然Dagger2的功能比工厂模式更加强大。
 #Dagger基础#
 ##基本结构视图##
 Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，Module，Component,Container。
