@@ -24,7 +24,7 @@
 Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，Module，Component,Container。
 
 **依赖(组件)		       注入器(构成)		     容器**
-![](http://i.imgur.com/gVqm9MH.png)
+![](http://i.imgur.com/gVqm9MH.png)  
 
 - Module：依赖的提供者，所有需要被注入的元素的实例对象都是Module提供的，即所有注入的对象都是在这里new的；
 - Container：可以注入依赖的容器，在容器中使用@Inject标注的元素(成员变量)都会被自动初始化。
@@ -51,11 +51,11 @@ Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，M
 - @Scope:自定义注解的作用域。
 #Dagger+MVP#
 ##MVP回顾##
- ![](http://i.imgur.com/Wb19hIy.png)
-##本例中mvp的简单流程-点击按钮加载数据##
- ![](http://i.imgur.com/Q36OFjs.png)
+ ![](http://i.imgur.com/Wb19hIy.png)  
+##本例中mvp的简单流程-点击按钮加载数据##  
+ ![](http://i.imgur.com/Q36OFjs.png)  
 ##包结构##
-![](http://i.imgur.com/cUWvtHY.png)
+![](http://i.imgur.com/cUWvtHY.png)  
 ##流程##
 1.	首先走一遍MVP流程：从第1~6步
 2.	分析MVP的耦合性，然后代入Dagger的使用；
