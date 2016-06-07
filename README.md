@@ -50,6 +50,7 @@ Dagger2要实现一个完整的依赖注入，必不可少的元素有三种，M
 - @Component：注入器，可以说是@Inject和@Module的桥梁，作用就是链接这两个部分，它可以提供所有在Module中被定义了的类的实例，然后注入到使用@Inject修饰的元素。该过程是在编译时进行的，如果不满足条件会报错。 
 - @Provides:在modules中，使用该注解提供依赖。
 - @Scope:自定义注解的作用域。
+- @Name:
 #Dagger+MVP#
 ##MVP回顾##
  ![](http://i.imgur.com/Wb19hIy.png)  
