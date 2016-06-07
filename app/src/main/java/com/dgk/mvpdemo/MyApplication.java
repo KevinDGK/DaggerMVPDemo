@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.dgk.mvpdemo.dagger.component.DaggerPresenterComponent;
 import com.dgk.mvpdemo.dagger.component.PresenterComponent;
-import com.dgk.mvpdemo.dagger.module.PresenterModule;
 
 
 /**
@@ -20,7 +19,7 @@ public class MyApplication extends Application {
         super.onCreate();
     }
 
-    public PresenterComponent getPresenterComponent() {
+    public static PresenterComponent getPresenterComponent() {
 
         /*
             1. 在Application层对注入器进行初始化
@@ -30,10 +29,10 @@ public class MyApplication extends Application {
                 -build()    创建Component的实例
          */
         if (presenterComponent == null) {
-            presenterComponent = DaggerPresenterComponent.builder()
-                    .presenterModule(new PresenterModule())
-                    .build();
-            //presenterComponent = DaggerPresenterComponent.create();   // 作用同上
+//            presenterComponent = DaggerPresenterComponent.builder()
+//                    .presenterModule(new PresenterModule())
+//                    .build();
+            presenterComponent = DaggerPresenterComponent.create();   // 作用同上
         }
         return presenterComponent;
     }

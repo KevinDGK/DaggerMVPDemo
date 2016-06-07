@@ -54,6 +54,7 @@ public class PresenterModule {
 
 
     //  Provides添加参数方法一：输入参数自动使用到provideColor()的返回值Color.RED
+    @Named("Apple")
     @Provides
     public Fruit provideFruit(Integer color){
         return new Apple(color);

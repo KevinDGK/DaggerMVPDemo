@@ -3,9 +3,12 @@ package com.dgk.mvpdemo.presenter;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.dgk.mvpdemo.MyApplication;
 import com.dgk.mvpdemo.model.IModel;
 import com.dgk.mvpdemo.model.Model;
 import com.dgk.mvpdemo.view.IView;
+
+import javax.inject.Inject;
 
 /**
  * @author dgk
@@ -14,7 +17,7 @@ import com.dgk.mvpdemo.view.IView;
  */
 public class PresenterA implements IPresenter {
 
-    private IView view;     // 持有view的接口，用于显示数据
+    IView view;     // 持有view的接口，用于显示数据
     private IModel model;   // 持有model的接口，用于获取数据
 
     public PresenterA(){
@@ -25,6 +28,7 @@ public class PresenterA implements IPresenter {
     public void onCreate(IView view) {
         Log.i(this.getClass().getSimpleName(), "===== onCreate =====");
         this.view = view;
+//        MyApplication.getPresenterComponent().inject();
     }
 
     @Override

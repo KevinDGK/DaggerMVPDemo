@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements IView{
     public IPresenter presenter;        // 1.使用dagger注入IPresenter，初始化并不在view层，实现了view层和presenter层的解耦
                                         // 如果复用View，即改变presenter，并不用修改view的代码，仅仅注入的时候将PresentA换成PresentB即可。
 
+    @Named("Apple")
     @Inject
     public Fruit fruit;
 
@@ -41,9 +43,11 @@ public class MainActivity extends AppCompatActivity implements IView{
     public Apple apple;
 
     @Named("Orange")
+    @Inject
     public Fruit mOrange;
 
     @Named("Banana")
+    @Inject
     public Fruit mBanana;
 
     @Override
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements IView{
         setContentView(R.layout.activity_main);
 
         // 方法一：在application层初始化注入器的实例，可重复调用注入器来对不同的容器完成注入
-        //((MyApplication)getApplication()).getPresenterComponent().inject(this); // 注入依赖 - IPresenter
+//        ((MyApplication)getApplication()).getPresenterComponent().inject(this); // 注入依赖 - IPresenter
 
         // 方法二：每次创建注入器实例，来完成对容器的注入
         DaggerPresenterComponent.create().inject(this);
@@ -72,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements IView{
                                             // 而dagger的使用，可以极大的降低这种耦合。
 
         presenter.onCreate(this);
+
+        Log.i("mOrange", "mOrange is null:"+(mOrange == null));
     }
 
     private void initListener() {
@@ -97,15 +103,15 @@ public class MainActivity extends AppCompatActivity implements IView{
             }
         }
 
-        if (apple.type == "HFS") {
+        if (TextUtils.equals(apple.type,"HFS")) {
             Toast.makeText(this,"苹果：红富士！",Toast.LENGTH_SHORT).show();
         }
 
-        if (mOrange instanceof Orange) {
+        if ((mOrange!=null) && (mOrange instanceof Orange)) {
             Log.i("View", "mApple：注入的水果是苹果！！！");
         }
 
-        if (mBanana instanceof Banana) {
+        if ((mBanana!=null) && (mBanana instanceof Banana)) {
             Log.i("View", "mBanana：注入的水果是香蕉！！！");
         }
     }
