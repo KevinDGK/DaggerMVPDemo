@@ -1,7 +1,6 @@
 package com.dgk.mvpdemo.dagger.component;
 
-import android.app.Activity;
-
+import com.dgk.mvpdemo.dagger.module.FieldModule;
 import com.dgk.mvpdemo.dagger.module.PresenterModule;
 import com.dgk.mvpdemo.view.MainActivity;
 
@@ -23,7 +22,7 @@ import dagger.Component;
  *      @Component(modules={ModuleA.class,ModuleB.class,ModuleC.class})
  */
 @Singleton
-@Component(modules = {PresenterModule.class})
+@Component(modules = {PresenterModule.class,FieldModule.class})
 public interface PresenterComponent {
 
     /**
@@ -34,5 +33,5 @@ public interface PresenterComponent {
      *                  而Activity中并没有@inject，即没有需要注入的地方，所以在生成的DaggerPresenterComponent
      *                  中，方法就不会被调用。
      */
-    void inject(MainActivity activity);    // 注入点
+    void inject(MainActivity activity);
 }

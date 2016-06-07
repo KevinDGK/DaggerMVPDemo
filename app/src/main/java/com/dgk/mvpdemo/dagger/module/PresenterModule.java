@@ -43,10 +43,10 @@ public class PresenterModule {
      * 只要创建过被Singleton修饰过的对象，那么就会被存储到component的实例中，下次注入的时候使用，即单例模式。
      * 使用方法：
      * 1.在Module对应的Provides方法标明@Singleton
-     * 2.同时在Component类标明@Singleton
+     * 2.同时在Component类标明@Singleton，它也是单例的，被保存在DaggerPresenterComponent中
      */
-    @Provides
     @Singleton
+    @Provides
     public PresenterA providePresenterA(){
         return new PresenterA();
     }

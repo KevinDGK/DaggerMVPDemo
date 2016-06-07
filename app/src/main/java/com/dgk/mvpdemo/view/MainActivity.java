@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dgk.mvpdemo.MyApplication;
 import com.dgk.mvpdemo.R;
 import com.dgk.mvpdemo.dagger.bean.Apple;
 import com.dgk.mvpdemo.dagger.bean.Banana;
@@ -23,6 +22,9 @@ import com.dgk.mvpdemo.presenter.PresenterA;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
+
+import dagger.Lazy;
 
 // View层
 public class MainActivity extends AppCompatActivity implements IView{
@@ -35,20 +37,40 @@ public class MainActivity extends AppCompatActivity implements IView{
     public IPresenter presenter;        // 1.使用dagger注入IPresenter，初始化并不在view层，实现了view层和presenter层的解耦
                                         // 如果复用View，即改变presenter，并不用修改view的代码，仅仅注入的时候将PresentA换成PresentB即可。
 
+    @Inject
+    public PresenterA presenterA;
+
     @Named("Apple")
     @Inject
-    public Fruit fruit;
+    public Fruit fruit; // 必须同时使用@Named 和 @Inject
 
     @Inject
     public Apple apple;
 
     @Named("Orange")
     @Inject
-    public Fruit mOrange;
+    public Fruit mOrange;   // 使用@Named区分要注入的对象使用的方法
 
     @Named("Banana")
     @Inject
     public Fruit mBanana;
+
+    @Named("name")
+    @Inject
+    public String name;
+
+    @Named("nickname")
+    @Inject
+    public String nickname;
+
+    @Inject
+    public Lazy<String> lazyPassword;    //注入Lazy元素
+
+    @Inject
+    public Provider<String> ProviderPassword;//注入Provider元素
+
+    String password1;
+    String password2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +89,17 @@ public class MainActivity extends AppCompatActivity implements IView{
 
     private void initView() {
 
+        Log.i("=====Inject String=====", "name："+name+"    nickname："+nickname);
+
+        password1 = lazyPassword.get();         // 这个时候才会注入元素password1，以后每次调用都是得到同一个对象
+
+        password2 = ProviderPassword.get();     // 这个时候才会注入元素password2，以后每次调用不一定会得到同一个对象
+                                         //根据Provides方法具体实现的不同，可能返回跟f2是同一个对象，也可能不是。
+                                         // 只有Module的Provide方法每次都创建新实例时，Provider每次get()的对象才不相同
+
+        Log.i("=====Inject String=====", "password："+password1+"   password"+password2);
+
+
         tv_content = (TextView) findViewById(R.id.tv_content);
         btn = (Button) findViewById(R.id.btn);
 
@@ -77,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements IView{
 
         presenter.onCreate(this);
 
-        Log.i("mOrange", "mOrange is null:"+(mOrange == null));
     }
 
     private void initListener() {
